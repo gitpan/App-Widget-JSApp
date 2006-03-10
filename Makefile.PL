@@ -1,6 +1,6 @@
 
 ######################################################################
-## File: $Id: Makefile.PL,v 1.1 2005/08/09 19:46:51 spadkins Exp $
+## File: $Id: Makefile.PL 3651 2006-03-10 04:02:08Z spadkins $
 ######################################################################
 
 use ExtUtils::MakeMaker;
@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker;
 %opts = (
     'NAME'        => 'App-Widget-JSApp',
     'DISTNAME'    => 'App-Widget-JSApp',
-    'VERSION'     => '0.10',
+    'VERSION'     => '0.50',
     'PREREQ_PM'   => {
                        'App::Widget'              => 0,
                      },

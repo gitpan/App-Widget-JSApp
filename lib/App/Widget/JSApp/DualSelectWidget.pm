@@ -1,10 +1,10 @@
 
 ######################################################################
-## $Id: DualSelectWidget.pm,v 1.1 2005/08/09 19:46:51 spadkins Exp $
+## $Id: DualSelectWidget.pm 3517 2005-11-14 20:05:21Z spadkins $
 ######################################################################
 
 package App::Widget::JSApp::DualSelectWidget;
-$VERSION = do { my @r=(q$Revision: 1.1 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
+$VERSION = do { my @r=(q$Revision: 3517 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
 
 use App::Widget::JSApp;
 @ISA = ( "App::Widget::JSApp" );
@@ -30,8 +30,9 @@ sub html {
 
     $self->init_jsapp();
 
-    my $size = "";
-    $size = ",\n    \"size\" : $self->{size}" if ($self->{size});
+    my $extra_attribs = "";
+    $extra_attribs .= ",\n    \"size\" : $self->{size}" if ($self->{size});
+    $extra_attribs .= ",\n    \"maxselected\" : $self->{maxselected}" if ($self->{maxselected});
 
     my ($values, $labels) = $self->values_labels();
     my ($values_text, $i);
@@ -65,12 +66,14 @@ sub html {
     my $value = $context->so_get($name);
     $value = "" if (!defined $value);
 
+    my $class = $self->{jsapp_serviceClass} || 'DualSelectWidget';     
+
     my $html = <<EOF;
 <script type="text/javascript">
   context.widget("$name", {
-    "serviceClass" : "DualSelectWidget",
+    "serviceClass" : "$class",
     "submittable" : 1,
-    "default" : "$value"$size$values_text$labels_text
+    "default" : "$value"$extra_attribs$values_text$labels_text
   }).write();
 </script>
 EOF
