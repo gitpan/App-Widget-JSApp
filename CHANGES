@@ -2,6 +2,9 @@
 # CHANGE LOG
 #########################################
 
+VERSION 0.51
+ x App::Widget::JSApp::TabbedAppFrame - ensure that js-app is initialized in _init() rather than html()
+
 VERSION 0.50
  x Initial release
 

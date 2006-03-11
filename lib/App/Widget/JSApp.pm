@@ -1,10 +1,10 @@
 
 ######################################################################
-## $Id: JSApp.pm 3528 2006-02-02 20:56:28Z spadkins $
+## $Id: JSApp.pm 3661 2006-03-11 15:39:46Z spadkins $
 ######################################################################
 
 package App::Widget::JSApp;
-$VERSION = do { my @r=(q$Revision: 3528 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
+$VERSION = do { my @r=(q$Revision: 3661 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
 
 use App::Widget;
 @ISA = ( "App::Widget" );
@@ -13,8 +13,7 @@ use strict;
 
 =head1 NAME
 
-App::Widget::JSApp::DualListSelectWidget - An ordered multi-select widget made up of two HTML <select> tags and four buttons,
-enhanced by JavaScript
+App::Widget::JSApp - Dynamic, client-side widgets for the App-Context Framework using the js-app Javascript distribution
 
 =head1 SYNOPSIS
 
@@ -25,6 +24,7 @@ enhanced by JavaScript
 =cut
 
 sub html {
+    &App::sub_entry if ($App::trace);
     my $self = shift;
     my $name = $self->{name};
     my $context = $self->{context};
@@ -104,6 +104,7 @@ sub html {
 </script>
 EOF
 
+    &App::sub_exit($html) if ($App::trace);
     return($html);
 }
 
@@ -116,6 +117,7 @@ sub escape_double_quoted_value {
 }
 
 sub init_jsapp {
+    &App::sub_entry if ($App::trace);
     my ($self) = @_;
     my $context = $self->{context};
     my $response = $context->response();
@@ -126,9 +128,11 @@ sub init_jsapp {
         $response->include("javascript", $js_conf);
         $response->include("javascript", $js);
     }
+    &App::sub_exit() if ($App::trace);
 }
 
 sub javascript_conf {
+    &App::sub_entry if ($App::trace);
     my ($self) = @_;
     my $context = $self->{context};
     my $options = $context->options();
@@ -145,6 +149,7 @@ sub javascript_conf {
 </script>
 EOF
     }
+    &App::sub_exit($js) if ($App::trace);
     return($js);
 }
 

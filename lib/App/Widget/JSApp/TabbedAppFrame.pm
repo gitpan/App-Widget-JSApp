@@ -1,10 +1,10 @@
 
 ######################################################################
-## $Id: TabbedAppFrame.pm 3485 2005-10-14 02:24:47Z spadkins $
+## $Id: TabbedAppFrame.pm 3657 2006-03-10 19:43:13Z spadkins $
 ######################################################################
 
 package App::Widget::JSApp::TabbedAppFrame;
-$VERSION = do { my @r=(q$Revision: 3485 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
+$VERSION = do { my @r=(q$Revision: 3657 $=~/\d+/g); sprintf "%d."."%02d"x$#r,@r};
 
 use App;
 use App::Widget::TabbedAppFrame;
@@ -60,11 +60,10 @@ configured to do so.  Otherwise, it implements itself as a table.
 # OUTPUT METHODS
 ######################################################################
 
-sub html {
+sub _init {
     my $self = shift;
+    $self->SUPER::_init(@_);
     $self->init_jsapp();
-    my $html = $self->SUPER::html();
-    return($html);
 }
 
 1;
