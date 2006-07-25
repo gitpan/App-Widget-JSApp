@@ -1,6 +1,6 @@
 
 ######################################################################
-## File: $Id: Makefile.PL 3662 2006-03-11 15:42:54Z spadkins $
+## File: $Id: Makefile.PL 6707 2006-07-25 02:21:19Z spadkins $
 ######################################################################
 
 use ExtUtils::MakeMaker;
@@ -10,11 +10,10 @@ use ExtUtils::MakeMaker;
 %opts = (
     'NAME'        => 'App-Widget-JSApp',
     'DISTNAME'    => 'App-Widget-JSApp',
-    'VERSION'     => '0.51',
+    'VERSION'     => '0.60',
     'PREREQ_PM'   => {
                        'App::Widget'              => 0,
                      },
-    'clean'       => { FILES => '$(EXE_FILES)' },
     'dist'        => {'COMPRESS'=>'gzip -9f', 'SUFFIX' => 'gz',
                       'ZIP'=>'/usr/bin/zip','ZIPFLAGS'=>'-rl'},
 );
